@@ -20,4 +20,11 @@ describe('Thermostat', function() {
     thermostat.down()
     expect(thermostat.getTemp()).toEqual(19)
   });
+
+  it('doesnt go down below 10', function() {
+    for (let step = 0; step < 11; step++) {
+      thermostat.down();
+    }
+    expect(thermostat.getTemp()).toEqual(10)
+  })
 });
