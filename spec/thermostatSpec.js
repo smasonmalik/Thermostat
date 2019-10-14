@@ -27,4 +27,47 @@ describe('Thermostat', function() {
     }
     expect(thermostat.getTemp()).toEqual(10)
   })
+
+  it('initializes with powerSave on', function() {
+    expect(thermostat.isPowerSaveOn()).toEqual(true)
+  })
+
+  it('turns powerSave ff', function() {
+    thermostat.powerSaveOff()
+    expect(thermostat.isPowerSaveOn()).toEqual(false)
+  })
+
+  it('turns powerSave on', function() {
+    thermostat.powerSaveOff()
+    thermostat.powerSaveOn()
+    expect(thermostat.isPowerSaveOn()).toEqual(true)
+  })
+  
+  it('ismaxtemp', function() {
+    for (let step = 0; step < 5; step++) {
+      thermostat.up();
+    }
+    expect(thermostat.isMaxTemp()).toEqual(true)
+  })
+
+  describe('max temp when PWS on', function() {
+    it('caps temp at 25 degrees', function() {
+      for (let step = 0; step < 13; step++) {
+        thermostat.up();
+      }
+      expect(thermostat.getTemp()).toEqual(25)
+    })
+  })
+
+  describe('max temp when PWS off', function() {
+    it('caps temp at 32 degrees', function() {
+      thermostat.powerSaveOff()
+      for (let step = 0; step < 16; step++) {
+        thermostat.up();
+      }
+      expect(thermostat.getTemp()).toEqual(32)
+    })
+  })
+
+
 });
