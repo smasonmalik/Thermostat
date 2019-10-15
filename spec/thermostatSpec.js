@@ -32,7 +32,7 @@ describe('Thermostat', function() {
     expect(thermostat.isPowerSaveOn()).toEqual(true)
   })
 
-  it('turns powerSave ff', function() {
+  it('turns powerSave off', function() {
     thermostat.powerSaveOff()
     expect(thermostat.isPowerSaveOn()).toEqual(false)
   })
@@ -74,5 +74,27 @@ describe('Thermostat', function() {
     })
   })
 
+  describe('when the temperature is between 18 and 25 degrees', function() {
+    it('it is considered medium-usage', function() {
+      expect(thermostat.usage()).toEqual('medium-usage');
+    });
+  });
 
+  describe('when the temperature is < 18 degrees', function() {
+    it('it is considered low-usage', function() {
+      for (let step = 0; step < 3; step++) {
+        thermostat.down();
+      }
+      expect(thermostat.usage()).toEqual('low-usage');
+    });
+  });
+
+  describe('when the temperature is >= 25', function() {
+    it('it is considered high-usage', function() {
+      for (let step = 0; step < 5; step++) {
+        thermostat.up();
+      }
+      expect(thermostat.usage()).toEqual('high-usage');
+    });
+  });
 });
