@@ -44,3 +44,7 @@ Thermostat.prototype.isMaxTemp = function() {
   }
   return this.temp === this.MAX_PWS_On;
 };
+
+Thermostat.prototype.resetTemp = function () {
+  this.temp = 20
+}

@@ -42,12 +42,17 @@ describe('Thermostat', function() {
     thermostat.powerSaveOn()
     expect(thermostat.isPowerSaveOn()).toEqual(true)
   })
-  
+
   it('ismaxtemp', function() {
     for (let step = 0; step < 5; step++) {
       thermostat.up();
     }
     expect(thermostat.isMaxTemp()).toEqual(true)
+  })
+
+  it('resets the temp to 20', function() {
+    thermostat.resetTemp()
+    expect(thermostat.getTemp()).toEqual(20)
   })
 
   describe('max temp when PWS on', function() {
