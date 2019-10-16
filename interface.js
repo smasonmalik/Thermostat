@@ -1,8 +1,8 @@
 $(document).ready(function() {
   var thermostat = new Thermostat();
-  var longitude
-  var latitude
   updateTemp()
+  getLocation() 
+  // setInterval(function(){ getLocation() }
 
   $("#temperature-up").on('click', function() {
     thermostat.up();
@@ -32,15 +32,12 @@ $(document).ready(function() {
     updateTemp()
   })
 
-
-
-
   function updateTemp() {
     $('#temperature').text(thermostat.getTemp());
     $("#temperature").attr('class', thermostat.usage())
   }
 
-  window.onload = function getLocation() {
+  function getLocation() {
      navigator.geolocation.watchPosition(showPosition) 
   }
   
