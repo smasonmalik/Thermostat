@@ -1,8 +1,8 @@
 var Thermostat = function() {
   this.DEFAULT_TEMP = 20
   this.MIN_TEMP = 10
-  this.MAX_PWS_On = 25
-  this.MAX_PWS_Off = 32
+  this.MAX_PWS_ON = 25
+  this.MAX_PWS_OFF = 32
   this.powerSave = true
   this.lowUsageTemp = 18
   this.temp = this.DEFAULT_TEMP
@@ -42,9 +42,9 @@ Thermostat.prototype.powerSaveOff = function() {
 
 Thermostat.prototype.isMaxTemp = function() {
   if (this.isPowerSaveOn() === false) {
-    return this.temp === this.MAX_PWS_Off;
+    return this.temp === this.MAX_PWS_OFF;
   }
-  return this.temp === this.MAX_PWS_On;
+  return this.temp >= this.MAX_PWS_ON;
 };
 
 Thermostat.prototype.resetTemp = function () {
@@ -55,7 +55,7 @@ Thermostat.prototype.usage = function () {
   if (this.temp < this.lowUsageTemp) {
     return "low-usage"
   }
-  else if (this.temp < this.MAX_PWS_On) {
+  else if (this.temp < this.MAX_PWS_ON) {
     return "medium-usage"
   }
   else {
