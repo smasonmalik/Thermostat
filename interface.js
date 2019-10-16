@@ -31,7 +31,7 @@ $(document).ready(function() {
   })
 
   $.get('http://api.openweathermap.org/data/2.5/weather?q=London&appid=a3d9eb01d4de82b9b8d0849ef604dbed&units=metric', function(data) {
-    currentTemp = data.main.temp
+    var =currentTemp = data.main.temp
     var weatherDescription = data.weather[0].description
     $('#current-temp').text(currentTemp);
     $('#current-desc').text(weatherDescription);
