@@ -34,6 +34,9 @@ Thermostat.prototype.isPowerSaveOn = function() {
 
 Thermostat.prototype.powerSaveOn = function() {
   this.powerSave = true
+  if (this.temp > this.MAX_PWS_ON) {
+    this.temp = this.MAX_PWS_ON
+  }
 };
 
 Thermostat.prototype.powerSaveOff = function() {
