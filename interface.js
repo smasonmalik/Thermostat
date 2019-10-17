@@ -1,8 +1,8 @@
 $(document).ready(function() {
   var thermostat = new Thermostat();
   updateTemp()
-  getLocation() 
-  // setInterval(function(){ getLocation() }
+  getLocation()
+  // window.setInterval(getLocation, 10000 }
 
   $("#temperature-up").on('click', function() {
     thermostat.up();
@@ -52,9 +52,6 @@ $(document).ready(function() {
         $('#current-temp').text(currentTemp);
         $('#current-weather').text(weatherDescription);
         $('#current-location').text(city);
-
-        console.log(latitude)
-        console.log(longitude)
       })
     }
 })
