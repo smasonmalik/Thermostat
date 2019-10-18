@@ -4,14 +4,25 @@ $(document).ready(function() {
   getLocation()
   // window.setInterval(getLocation, 10000 }
 
-  $("#temperature-up").on('click', function() {
-    thermostat.up();
+  $.get("/temperature", function(response) {
+      thermostat.temp = Number(response)
     updateTemp()
   })
 
-  $('#temperature-down').click(function() { // this is an alternate version of .on('click'), with a sprinkle of jQuery syntactic sugar
+  function sendState() {
+    var temperature = { temperature: thermostat.temp }
+    $.post("/temperature", temperature)
+  }
+
+  $("#temperature-up").on('click', function() {
+    thermostat.up();
+    sendState()
+    updateTemp()
+  })
+
+  $('#temperature-down').click(function() { 
     thermostat.down();
-    $('#temperature').text(thermostat.getTemp());
+    sendState()
     updateTemp()
   })
 
